@@ -11,7 +11,7 @@ function f(arr1, arr2) {
     let resultArr = [];
     let sumOfArr = arr1.concat(arr2);
 
-    for(let key in sumOfArr) {
+    for (let key in sumOfArr) {
         let len1;
         len1 = uniqSet.size;
         uniqSet.add(sumOfArr[key]);
