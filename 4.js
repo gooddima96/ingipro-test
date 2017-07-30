@@ -4,6 +4,8 @@
 Первое число необязательно наименьшее
 */
 
+'use strict';
+
 function sumAll(arr) {
     let result = 0;
     let sortCopy = arr.slice().sort((a, b) => a - b);
