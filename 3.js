@@ -2,6 +2,8 @@
 Написать функцию, котоая разбивает переданный массив arr на группы длиной size.
 */
 
+'use strict';
+
 function chunkArrayInGroups(arr, size) {
     let result = new Array(arr.length / size ^ 0); //Integer
     for (let i = 0; i < arr.length / size ^ 0; i++) {
