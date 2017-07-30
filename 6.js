@@ -3,6 +3,8 @@
 Написать функцию, которая вернет новый объект, у которого ключи стали значениями, а значения ключами
 */
 
+'use strict';
+
 function invert_key_value(obj) {
     let result = {};
     for (let key in obj) {
