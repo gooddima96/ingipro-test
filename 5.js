@@ -4,6 +4,8 @@
 Если слово before начиналось с заглавной буквы, вставленное вместо него слово after тоже должно начинаться с заглавной буквы
 */
 
+'use strict';
+
 function myReplace(str, before, after) {
     let isUpper = (before[0].toLowerCase() !== before[0]);
     let afterPlus = (isUpper) ? `${after[0].toUpperCase()}${after.slice(1)}` : after;
