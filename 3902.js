@@ -7,14 +7,16 @@
 
 function sum(firstArg) {
     let currentSum = firstArg;
+
     function f(newArg) {
         currentSum += newArg;
         return f;
     }
     f.toString = () => currentSum;
+
     return f;
 }
-//
-console.log('Результат: ' + sum(1)); // => 1
-console.log('Результат: ' + sum(1)(2)); // => 3
-console.log('Результат: ' + sum(1)(2)(3)); // => 6
+//В консоли не приводится к строке
+console.log(`${sum(1)}`); // => 1
+console.log(`${sum(1)(2)}`); // => 3
+console.log(`${sum(1)(2)(3)}`); // => 6
