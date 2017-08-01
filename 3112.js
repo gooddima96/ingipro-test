@@ -8,7 +8,7 @@
 const arr = [1, 2, 3, 4, 5];
 
 function drop(arr, i) {
-    let arrCopy = arr.slice();
+    const arrCopy = arr.slice();
     arrCopy.splice(i, 1);
     return arrCopy;
 }
