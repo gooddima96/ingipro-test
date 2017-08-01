@@ -7,9 +7,9 @@ const arr1 = [1, 2, 3, 4, 5];
 const arr2 = [1, 5, 6, 7];
 
 function f(arr1, arr2) {
-    let uniqSet = new Set();
-    let resultArr = [];
-    let sumOfArr = arr1.concat(arr2);
+    const uniqSet = new Set();
+    const resultArr = [];
+    const sumOfArr = arr1.concat(arr2);
 
     for (let key in sumOfArr) {
         let len1;
