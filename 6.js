@@ -6,7 +6,7 @@
 'use strict';
 
 function invert_key_value(obj) {
-    let result = {};
+    const result = {};
     for (let key in obj) {
         result[obj[key]] = key;
     }
