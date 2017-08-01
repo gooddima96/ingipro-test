@@ -8,7 +8,7 @@ Cигнатура: range(stop) range(start, stop, [step=1])
 'use strict';
 
 function range(start = 0, stop, step = 1) {
-    let result = [];
+    const result = [];
 
     if (step < 1) {
         throw new Error('Invalid step');
