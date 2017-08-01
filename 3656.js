@@ -5,21 +5,15 @@
 */
 
 'use strict';
-
-const str = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": { "name": "Дима", "age": 21} }';
+const str = '{ "friends": [{"name": "Anna", "avatar": { "url": "http://some/url/to/avatar", "size": null } }] }';
 let oldObj = JSON.parse(str);
 
 function deepCopy(object) {
-    let copy = {};
-    //copy = JSON.parse(JSON.stringify(object));    //Слишком просто...
-    for (let key in object) {
-        copy[key] = ({}.toString.call(object[key]).slice(8, -1) == 'Object') ? deepCopy(object[key]) : object[key];
-    }
-    return copy;
+    return JSON.parse(JSON.stringify(object));
 }
 
 const newObj = deepCopy(oldObj);
-oldObj.friends.name = 'Андрей';
+oldObj.friends[0].avatar.url = 'best_ava';
 
-console.log('Origin\n', oldObj);
-console.log('Copy\n', newObj);
+console.log('Origin\n', oldObj.friends); //[ { name: 'Anna', avatar: { url: 'best_ava', size: null } } ]
+console.log('Copy\n', newObj.friends); //[ { name: 'Anna', avatar: { url: 'http://some/url/to/avatar', size: null } } ]
