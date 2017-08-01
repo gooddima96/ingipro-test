@@ -7,8 +7,8 @@
 'use strict';
 
 function myReplace(str, before, after) {
-    let isUpper = (before[0].toLowerCase() !== before[0]);
-    let afterPlus = (isUpper) ? `${after[0].toUpperCase()}${after.slice(1)}` : after;
+    const isUpper = (before[0].toLowerCase() !== before[0]);
+    const afterPlus = (isUpper) ? `${after[0].toUpperCase()}${after.slice(1)}` : `${after[0].toLowerCase()}${after.slice(1)}`;
 
     return str.split(before).join(afterPlus);
 }
