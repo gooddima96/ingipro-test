@@ -26,6 +26,7 @@ var mike = {
 function getProp(obj, path, def) {
     let result = obj;
     const keyArr = path.split('.');
+    
     for (let key in keyArr) {
         result = result[keyArr[key]];
         if (result === undefined) {
@@ -33,6 +34,7 @@ function getProp(obj, path, def) {
             break;
         }
     }
+
     return result;
 }
 
