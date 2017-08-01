@@ -8,8 +8,10 @@
 const str = 'Мама мыла раму';
 
 function truncate(string, lenght) {
-    return (string.length > lenght) ? `${string.substr(0, string.slice(0, lenght + 1).search(/\s\S*$/)) }...` : string;
+    const FIRST_SPACE = (string.slice(0, lenght + 1).search(/\s\S*$/) === -1) ? string.search(/\s/) : string.slice(0, lenght + 1).search(/\s\S*$/);
+
+    return (string.length > lenght) ? `${string.slice(0, FIRST_SPACE) }...` : string;
 }
 
-console.log(truncate(str, 7)); // 'Мама...'
+console.log(truncate(str, 5)); // 'Мама...'
 console.log(truncate(str, 11)); // 'Мама мыла...'
