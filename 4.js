@@ -8,7 +8,7 @@
 
 function sumAll(arr) {
     let result = 0;
-    let sortCopy = arr.slice().sort((a, b) => a - b);
+    const sortCopy = arr.slice().sort((a, b) => a - b);
 
     for (let i = sortCopy[0]; i <= sortCopy[sortCopy.length - 1]; i++) {
         result += i;
