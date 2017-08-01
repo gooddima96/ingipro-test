@@ -20,8 +20,10 @@ function wrap(string, lenght) {
     while (start < string.length) {
         notEof = (string[start + lenght] !== undefined);
         existSpace = (tmp = string.slice(start, start + lenght + 1).lastIndexOf(' ')) > 0;
+
         end = (notEof && existSpace) ? tmp : lenght;
-        result += `${string.substr(start, end) }\n`;
+
+        result += string.substr(start, end) + ((notEof) ? '\n' : '');
         start += end + Number(existSpace);
     }
 
