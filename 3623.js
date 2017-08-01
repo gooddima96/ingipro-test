@@ -18,8 +18,8 @@ const arr = [
 ];
 
 function arrToObj(array) {
-    let result = {};
-    array.forEach((item) => {result[item.name] = item.value;});
+    const result = {};
+    array.forEach((item) => result[item.name] = item.value);
     return result;
 }
 
