@@ -8,17 +8,28 @@
 
 'use strict';
 
-const cityName = prompt('Введите город:', 'Moscow');
+function getCyty(cityName) {
+    return fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=bd5e378503939ddaee76f12ad7a97608`).
+        then((response) => {
+            if (response.status !== 200) {
+                throw new Error(response.statusText);
+            }
+            return response.json();
+        });
+}
 
-fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=bd5e378503939ddaee76f12ad7a97608`).
-    then((response) => {
-        return response.json();
-    }).then((r) => {
-        let h = (r.sys.sunset - r.sys.sunrise) / 3600 ^ 0;
-        let min = (r.sys.sunset - r.sys.sunrise) % 3600 / 60 ^ 0;
-        let sec = (r.sys.sunset - r.sys.sunrise) % 3600 % 60 ^ 0;
-        alert(`В городе ${ r.name
-        }\nПогода: ${ r.weather[0].main
-        }\nПродолжительность дня: ${ h } ч ${ min } м ${ sec } c` +
-        `\nСкорость ветра: ${ r.wind.speed } м/с`);
-    }).catch((e) => alert(e));
+function formatTimeInterval(seconds) {
+    const h = seconds / 3600 ^ 0;
+    const min = seconds % 3600 / 60 ^ 0;
+    const sec = seconds % 3600 % 60 ^ 0;
+    return `${h} ч ${min} мин ${sec} с`;
+}
+
+function howWeatherIn(cityName) {
+    getCyty(cityName).then((city) => {
+        const durationDay = formatTimeInterval(city.sys.sunset - city.sys.sunrise);
+        alert(`В городе ${city.name}\nПогода: ${city.weather[0].main}\nПродолжительность дня: ${durationDay}\nСкорость ветра: ${city.wind.speed} м/с`);
+    }).catch((err) => alert(err));
+}
+
+howWeatherIn('Moscow');
