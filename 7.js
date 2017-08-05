@@ -10,14 +10,9 @@ initial(value)
 */
 
 
-function sortLibrary(library, field_name, reverse, initial) {
+function sortLibrary(library, field_name, reverse, initial = (item) => item) {
     const reverseInt = (reverse) ? -1 : 1;
-    library.sort((a, b) => {
-        if (initial) {
-            return (initial(a[field_name]) > initial(b[field_name])) ? reverseInt : -reverseInt;
-        }
-        return a[field_name] > b[field_name] ? reverseInt : -reverseInt;
-    });
+    library.sort((a, b) => (initial(a[field_name]) > initial(b[field_name])) ? reverseInt : -reverseInt);
     return library;
 }
 
