@@ -11,7 +11,7 @@
 */
 
 function getCyty(cityName) {
-    return fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=bd5e378503939ddaee76f12ad7a97608`).
+    return fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=bd5e378503939ddaee76f12ad7a97608`).
         then((response) => {
             if (response.status !== 200) {
                 throw new Error(response.statusText);
@@ -23,18 +23,18 @@ function getCyty(cityName) {
 function showWeatherInCityes() {
     const arr = [].slice.call(arguments);
     let chain = Promise.resolve();
-    let results = [];
+    const results = [];
 
     arr.forEach((thisCity) => {
         chain = chain.then(() => getCyty(thisCity))
             .then((city) => {
-                results.push(`${city.name}: температура ${city.main.temp}C, скорость ветра ${city.wind.speed}, влажность ${city.main.humidity}%`);
+                results.push(`${city.name}: температура ${city.main.temp}°C, скорость ветра ${city.wind.speed}, влажность ${city.main.humidity}%`);
             });
     });
 
     chain.then(() => {
         alert(results.join(',\n'));
-    });
+    }).catch(err => alert(err));
 }
 
 showWeatherInCityes('Moscow','New-York', 'London');
