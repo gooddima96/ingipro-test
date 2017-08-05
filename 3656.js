@@ -9,7 +9,12 @@ const str = '{ "friends": [{"name": "Anna", "avatar": { "url": "http://some/url/
 let oldObj = JSON.parse(str);
 
 function deepCopy(object) {
-    return JSON.parse(JSON.stringify(object));
+    //return JSON.parse(JSON.stringify(object));
+    const copy = {};
+    for (let key in object) {
+        copy[key] = (object[key] instanceof Object) ? deepCopy(object[key]) : object[key];
+    }
+    return copy;
 }
 
 const newObj = deepCopy(oldObj);
