@@ -9,8 +9,8 @@ function chunkArrayInGroups(arr, size) {
     const result = new Array(newSize);
 
     for (let i = 0; i < newSize; i++) {
-        result[i] = new Array(size);
-        for (let j = 0; j < size; j++) {
+        result[i] = [];
+        for (let j = 0; j < size && (i * size + j < arr.length); j++) {
             result[i][j] = arr[i * size + j];
         }
     }
@@ -18,5 +18,5 @@ function chunkArrayInGroups(arr, size) {
 }
 
 console.log(chunkArrayInGroups(['a', 'b', 'c', 'd'], 2)); // [["a", "b"], ["c", "d"]]
-console.log(chunkArrayInGroups(['a', 'b', 'c', 'd'], 3)); // [["a", "b", "c"], ["d", undefined, undefined]]
+console.log(chunkArrayInGroups(['a', 'b', 'c', 'd'], 3)); // [["a", "b", "c"], ["d"]]
 console.log(chunkArrayInGroups(['a', 'b', 'c', 'd'], 0)); // []
