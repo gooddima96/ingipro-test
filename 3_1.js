@@ -28,7 +28,8 @@ function formatTimeInterval(seconds) {
 function howWeatherIn(cityName) {
     getCyty(cityName).then((city) => {
         const durationDay = formatTimeInterval(city.sys.sunset - city.sys.sunrise);
-        alert(`В городе ${city.name}\nПогода: ${city.weather[0].main}\nПродолжительность дня: ${durationDay}\nСкорость ветра: ${city.wind.speed} м/с`);
+        alert(`В городе ${city.name}\nПогода: ${city.weather[0].main}\nПродолжительность дня: ${durationDay
+        }\nСкорость ветра: ${city.wind.speed} м/с`);
     }).catch((err) => alert(err));
 }
 
