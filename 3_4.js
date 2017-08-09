@@ -45,7 +45,6 @@ function findWarmestCity(cityes) {
     const tmp = cityes.slice();
     tmp.sort((a, b) => b.main.temp - a.main.temp);
     cityes.forEach((cityes) => console.log(cityes.name, cityes.main.temp));
-    //tmp.forEach((cityes) => console.log(cityes.name, cityes.main.temp));
     return tmp[0];
 }
 
