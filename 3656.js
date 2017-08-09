@@ -6,7 +6,7 @@
 
 'use strict';
 const str = '{ "friends": [{"name": "Anna", "avatar": { "url": "http://some/url/to/avatar", "size": null } }] }';
-let oldObj = JSON.parse(str);
+const oldObj = JSON.parse(str);
 
 function deepCopy(object) {
     //return JSON.parse(JSON.stringify(object));
