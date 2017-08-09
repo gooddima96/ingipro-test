@@ -28,7 +28,7 @@ function getCoord(cityName) {
         });
 }
 
-function getCityesNeighbors({lon, lat}, numberOfNeighbors = 5) {
+function getcitiesNeighbors({lon, lat}, numberOfNeighbors = 5) {
     return fetch(`http://api.openweathermap.org/data/2.5/find?lat=${lat}&lon=${lon}&cnt=${numberOfNeighbors + 1}&units=metric&appid=bd5e378503939ddaee76f12ad7a97608`).
         then(response => {
             if (response.status !== 200) {
@@ -36,27 +36,25 @@ function getCityesNeighbors({lon, lat}, numberOfNeighbors = 5) {
                 throw new Error(response.statusText);
             }
             return response.json();
-        }).then(cityes => {
-            return cityes.list;
+        }).then(cities => {
+            return cities.list;
         });
 }
 
-function findWarmestCity(cityes) {
-    const tmp = cityes.slice();
+function findWarmestCity(cities) {
+    const tmp = cities.slice();
     tmp.sort((a, b) => b.main.temp - a.main.temp);
-    cityes.forEach((cityes) => console.log(cityes.name, cityes.main.temp));
-    //tmp.forEach((cityes) => console.log(cityes.name, cityes.main.temp));
     return tmp[0];
 }
 
 function checkNeihboringCities(cityName, numberOfNeighbors = 5) {
     getCoord(cityName).then(({lon, lat}) => {
-        getCityesNeighbors({lon, lat},numberOfNeighbors).then(cityes => {
-            const warmestCity = findWarmestCity(cityes);
-            if (warmestCity.name === cityes[0].name) {
-                console.log(`В городе ${cityes[0].name} теплее чем в ${cityes.length - 1} ближайших городах`);
+        getcitiesNeighbors({lon, lat},numberOfNeighbors).then(cities => {
+            const warmestCity = findWarmestCity(cities);
+            if (warmestCity.name === cities[0].name) {
+                console.log(`В городе ${cities[0].name} теплее чем в ${cities.length - 1} ближайших городах`);
             } else {
-                console.log(`В городе ${warmestCity.name} ${warmestCity.main.temp}°C. Это теплее, чем в ${cityes[0].name} на ${(warmestCity.main.temp - cityes[0].main.temp).toFixed(2)}°C`);
+                console.log(`В городе ${warmestCity.name} ${warmestCity.main.temp}°C. Это теплее, чем в ${cities[0].name} на ${(warmestCity.main.temp - cities[0].main.temp).toFixed(2)}°C`);
             }
         }).catch(err => alert(err));
     }).catch(err => alert(err));
