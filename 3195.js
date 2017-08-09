@@ -7,15 +7,15 @@
 
 function randomNumber() {
     const startTime = Date.now();
-    const min = 1;
-    const max = 2;
+    const MIN = 1;
+    const MAX = 2;
     let myRandom = (min, max) => min + (max - min) * Math.random();
     
-    const randomMs = myRandom(min, max) * 1000 ^ 0; //Integer milliseconds
+    const randomMs = myRandom(MIN, MAX) * 1000 ^ 0; //Integer milliseconds
     // console.log('Wait:', randomMs);
     while (randomMs > Date.now() - startTime){}
 
-    return myRandom(min, max);
+    return myRandom(MIN, MAX);
 }
 
 console.log(randomNumber());
