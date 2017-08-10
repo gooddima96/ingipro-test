@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="http://d3js.org/d3.v3.min.js"> </script>
+</head>
+<body>
+<script>
+    const svg = d3.select('body')
+        .append('svg').style("height", '300px')
+        .style("width", '300px')
+        .style("border", "2px solid black")
+        .style("stroke-width", "1");
+    let x, y, color;
+    let draw = null;
+
+    addEventListener('mousedown', () => {
+        if (event.which === 1) {
+            x = event.pageX;
+            y = event.pageY;
+            color = Math.random() * 360;
+            draw = 1;
+        }
+    });
+    addEventListener('mousemove', () => {
+        if (draw) {
+            svg.append('line')
+                .style("stroke", `hsl(${color},100%,70%)`)
+                .attr("x1", x)
+                .attr("y1", y)
+                .attr("x2", x = event.pageX)
+                .attr("y2", y = event.pageY);
+        }
+    });
+    addEventListener('mouseup', () => {
+        if (event.which === 1) {
+            draw = null;
+        }
+    });
+</script>
+</body>
+</html>
